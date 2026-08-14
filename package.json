@@ -1,0 +1,11 @@
+{
+  "name": "dream-flight",
+  "version": "1.0.0",
+  "description": "梦中飞行 —— 根据一个反复出现的梦做成的 3D 网页游戏：被僵尸和鬼追、游泳、用游泳的姿势飞行、飞越高楼、树尖跳跃",
+  "scripts": {
+    "start": "python -m http.server 8283"
+  },
+  "dependencies": {
+    "three": "^0.160.0"
+  }
+}
