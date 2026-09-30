@@ -1,4 +1,4 @@
-# 推送 main 后自动发布到 GitHub Pages：npm ci 拉取 three，只带上 three.module.js（保持 index.html 的 importmap 路径不变）
+# 推送 main 后自动发布到 GitHub Pages：npm ci 拉取 three，只带上用到的文件（保持 index.html 的 importmap 路径不变）
 name: Deploy to GitHub Pages
 on:
   push:
@@ -21,9 +21,10 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: |
-          mkdir -p _site/node_modules/three/build
-          cp index.html game.js _site/
+          mkdir -p _site/node_modules/three/build _site/node_modules/three/examples/jsm
+          cp -r index.html src _site/
           cp node_modules/three/build/three.module.js _site/node_modules/three/build/
+          cp -r node_modules/three/examples/jsm/{objects,postprocessing,shaders,utils} _site/node_modules/three/examples/jsm/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
